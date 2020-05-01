@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <google-map />
+
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -40,13 +42,15 @@
 </template>
 
 <script>
+import GoogleMap from "./components/GoogleMap";
 import HelloWorld from "./components/HelloWorld";
 import tracking from "./logic/tracking.js";
 export default {
   name: "App",
 
   components: {
-    HelloWorld
+    HelloWorld,
+    GoogleMap
   },
 
   data: () => ({
