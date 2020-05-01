@@ -5,12 +5,13 @@ import tracking from "../logic/tracking.js";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: { samples: [] },
+  state: { samples: [], done: false },
   mutations: {
     setSamples(state, samples) {
-      samples.forEach(sample => {
-        state.samples.push(sample);
-      });
+      state.samples.push(...samples);
+    },
+    setDone(state) {
+      state.done = true;
     }
   },
   actions: {
@@ -19,11 +20,12 @@ export default new Vuex.Store({
         const data = await tracking.getTrackingData(url);
         commit("setSamples", data.samples);
       }
+      commit("setDone");
     }
   },
   getters: {
     markers: state => {
-      state.samples.map(sample => {
+      return state.samples.map(sample => {
         return { lat: sample.LAT, lng: sample.LNG };
       });
     }

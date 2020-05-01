@@ -1,50 +1,62 @@
 <template>
   <div>
-    <gmap-map :center="center" :zoom="15" style="width:100%;  height: 400px;">
+    <gmap-map :center="center" :zoom="5" style="width:100%;  height: 400px;">
       <gmap-marker
-        v-for="(m, index) in markers"
+        v-for="(mark, index) in segmentedMarkers"
         :key="index"
-        :position="m"
-        @click="center = m.position"
+        :position="mark"
+        @click="center = mark"
       ></gmap-marker>
     </gmap-map>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "GoogleMap",
   data() {
     return {
-      center: { lat: 45.508, lng: -73.587 },
-      markers: [],
-      currentPlace: null
+      center: { lat: -1.1794446315870965e-287, lng: -1.2217753570287172e283 },
+      currentPlace: null,
+      segmentedMarkers: [
+        {
+          lat: -1.1794446315870965e-287,
+          lng: -1.2217753570287172e283
+        }
+      ]
     };
   },
 
-  computed: { ...mapGetters(["markers"]) },
+  computed: {
+    ...mapState(["samples", "done"])
+  },
 
   methods: {
-    // receives a place object via the autocomplete component
-    addMarker() {
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        };
-        this.markers.push({ position: marker });
-        this.center = marker;
-        this.currentPlace = null;
-      }
+    sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
     },
-    geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+    addMaker(markers, index) {
+      console.log("updating map");
+      this.segmentedMarkers.push(markers[index]);
+      index += 1;
+    }
+  },
+  watch: {
+    done: async function() {
+      let markers = this.samples.map(sample => {
+        return { lat: sample.LAT, lng: sample.LNG };
       });
+      console.log(markers);
+      let index = 0;
+      setInterval(this.addMaker, 1000, markers, index);
+      // for await (const marker of markers) {
+      //   this.sleep(1000);
+      //   this.segmentedMarkers.push(marker);
+      //   this.center = marker;
+      //   console.log(marker);
+      //   console.log(this.segmentedMarkers);
+      // }
     }
   }
 };
