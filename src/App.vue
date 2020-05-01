@@ -1,7 +1,5 @@
 <template>
   <v-app>
-    <google-map />
-
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -35,30 +33,40 @@
       </v-btn>
     </v-app-bar>
 
-    <v-content>
-      <HelloWorld />
-    </v-content>
+    <google-map />
+    <Table />
+    <v-content> </v-content>
   </v-app>
 </template>
 
 <script>
-import GoogleMap from "./components/GoogleMap";
-import HelloWorld from "./components/HelloWorld";
-import tracking from "./logic/tracking.js";
+import GoogleMap from "@/components/GoogleMap";
+import Table from "@/components/Table";
+import { mapActions } from "vuex";
 export default {
   name: "App",
 
   components: {
-    HelloWorld,
+    Table,
     GoogleMap
   },
 
-  data: () => ({
-    //
-  }),
+  data: () => ({}),
+
+  methods: {
+    ...mapActions(["fillSamples"])
+  },
 
   created: async function() {
-    tracking.getTrackingData();
+    const urls = [
+      "/data/track_2020-04-23T14-25-30.bin",
+      "/data/track_2020-04-23T14-30-30.bin",
+      "public/data/track_2020-04-23T14-51-29.bin",
+      "public/data/track_2020-04-23T14-46-29.bin",
+      "public/data/track_2020-04-23T14-41-30.bin",
+      "public/data/track_2020-04-23T14-36-20.bin"
+    ];
+    this.fillSamples(urls);
   }
 };
 </script>

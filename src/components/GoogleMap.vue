@@ -12,15 +12,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "GoogleMap",
   data() {
     return {
       center: { lat: 45.508, lng: -73.587 },
-      markers: [{ lat: 45.508, lng: -73.587 }],
+      markers: [],
       currentPlace: null
     };
   },
+
+  computed: { ...mapGetters(["markers"]) },
 
   methods: {
     // receives a place object via the autocomplete component
