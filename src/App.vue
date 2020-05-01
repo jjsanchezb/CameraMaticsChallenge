@@ -41,7 +41,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld";
-
+import tracking from "./logic/tracking.js";
 export default {
   name: "App",
 
@@ -51,6 +51,10 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
+
+  created: async function() {
+    tracking.getTrackingData();
+  }
 };
 </script>
