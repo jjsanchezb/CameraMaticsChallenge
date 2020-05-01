@@ -16,10 +16,8 @@ export default {
   name: "GoogleMap",
   data() {
     return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
       center: { lat: 45.508, lng: -73.587 },
-      markers: [{ lat: 45.508, lng: -73.587 }],
+      markers: [{ position: { lat: 45.508, lng: -73.587 } }],
       currentPlace: null
     };
   },
