@@ -1,10 +1,10 @@
 <template>
   <div>
-    <gmap-map :center="center" :zoom="8" style="width:100%;  height: 400px;">
+    <gmap-map :center="center" :zoom="15" style="width:100%;  height: 400px;">
       <gmap-marker
-        :key="index"
         v-for="(m, index) in markers"
-        :position="m.position"
+        :key="index"
+        :position="m"
         @click="center = m.position"
       ></gmap-marker>
     </gmap-map>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       center: { lat: 45.508, lng: -73.587 },
-      markers: [{ position: { lat: 45.508, lng: -73.587 } }],
+      markers: [{ lat: 45.508, lng: -73.587 }],
       currentPlace: null
     };
   },
