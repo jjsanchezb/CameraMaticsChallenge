@@ -1,5 +1,16 @@
 # challenge
 
+Consider a vehicle location tracking system that allows tracking data to be retrieved in a binary file format.
+
+each binary tracking data file contains 5 minutes of tracking data.
+
+For the challenge 6 files were provided
+
+develop a front-end application that loads and parses the data from the tracking files, and
+presents it to the end user.
+
+To use the following commands npm and node are required.
+
 ## Project setup
 
 ```
