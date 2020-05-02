@@ -1,11 +1,10 @@
 <template>
   <div>
-    <gmap-map :center="center" :zoom="5" style="width:100%;  height: 400px;">
+    <gmap-map :center="center" :zoom="2.5" ref="mapRef" class="fullmap">
       <gmap-marker
         v-for="(mark, index) in segmentedMarkers"
         :key="index"
         :position="mark"
-        @click="center = mark"
       ></gmap-marker>
     </gmap-map>
   </div>
@@ -17,14 +16,10 @@ export default {
   name: "GoogleMap",
   data() {
     return {
-      center: { lat: -1.1794446315870965e-287, lng: -1.2217753570287172e283 },
+      center: { lat: 0, lng: 0 },
       currentPlace: null,
-      segmentedMarkers: [
-        {
-          lat: -1.1794446315870965e-287,
-          lng: -1.2217753570287172e283
-        }
-      ]
+      segmentedMarkers: [],
+      index: 0
     };
   },
 
@@ -33,13 +28,10 @@ export default {
   },
 
   methods: {
-    sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    },
-    addMaker(markers, index) {
+    addMaker(markers) {
       console.log("updating map");
-      this.segmentedMarkers.push(markers[index]);
-      index += 1;
+      this.segmentedMarkers.push(markers[this.index]);
+      this.index++;
     }
   },
   watch: {
@@ -47,17 +39,15 @@ export default {
       let markers = this.samples.map(sample => {
         return { lat: sample.LAT, lng: sample.LNG };
       });
-      console.log(markers);
-      let index = 0;
-      setInterval(this.addMaker, 1000, markers, index);
-      // for await (const marker of markers) {
-      //   this.sleep(1000);
-      //   this.segmentedMarkers.push(marker);
-      //   this.center = marker;
-      //   console.log(marker);
-      //   console.log(this.segmentedMarkers);
-      // }
+
+      setInterval(this.addMaker, 2000, markers);
     }
   }
 };
 </script>
+<style scoped>
+.fullmap {
+  height: 94vh;
+  width: 100vw;
+}
+</style>

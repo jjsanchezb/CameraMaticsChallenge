@@ -2,8 +2,8 @@
   <v-data-table
     :headers="headers"
     :items="samples"
-    :items-per-page="20"
-    class="elevation-4 ma-4"
+    :items-per-page="25"
+    class="elevation-4"
     dense
   ></v-data-table>
 </template>
