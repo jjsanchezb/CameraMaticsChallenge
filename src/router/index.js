@@ -1,18 +1,28 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Table from "@/components/Table";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/table",
-    name: "Table",
-    component: Table
+    path: "/",
+    name: "Home",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "googlemap" */ "@/views/Home")
   },
   {
-    path: "/",
+    path: "/table",
+    name: "Table",
+    component: () =>
+      import(/* webpackChunkName: "googlemap" */ "@/components/Table"),
+    props: { length: 26 }
+  },
+  {
+    path: "/map",
     name: "GoogleMap",
+    props: { height: 94 },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

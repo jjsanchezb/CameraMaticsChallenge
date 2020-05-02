@@ -1,12 +1,16 @@
 <template>
   <div id="header">
     <v-toolbar dense class="white--text" color="secondary">
-      <h1 class="headline text-uppercase font-weight-light">
+      <router-link
+        to="/"
+        tag="h1"
+        class="headline text-uppercase font-weight-light"
+      >
         CameraMatics
-      </h1>
+      </router-link>
 
       <v-tabs slider-color="accent" slider-size="3" optional grow>
-        <v-tab class="white--text title font-weight-light" to="/">Map</v-tab>
+        <v-tab class="white--text title font-weight-light" to="/map">Map</v-tab>
         <v-tab class="white--text title font-weight-light" to="/table"
           >Table</v-tab
         >

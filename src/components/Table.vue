@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="samples"
-    :items-per-page="25"
+    :items-per-page="length"
     class="elevation-4"
     dense
   ></v-data-table>
@@ -12,7 +12,9 @@
 import { mapState } from "vuex";
 export default {
   name: "Table",
+
   computed: { ...mapState(["samples"]) },
+
   data: () => ({
     headers: [
       { text: "UTCTIME", value: "UTCTIME" },
@@ -29,6 +31,10 @@ export default {
       { text: "DIPSTATE", value: "DIPSTATE" },
       { text: "ACCSTATE", value: "ACCSTATE" }
     ]
-  })
+  }),
+
+  props: {
+    length: Number
+  }
 };
 </script>

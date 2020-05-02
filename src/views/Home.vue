@@ -1,13 +1,15 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    este es el home
+    <GoogleMap v-bind:height="45" />
+    <Table v-bind:length="15" />
   </div>
 </template>
 
 <script>
+import Table from "@/components/Table";
+import GoogleMap from "@/components/GoogleMap";
 export default {
   name: "Home",
-  components: {}
+  components: { GoogleMap, Table }
 };
 </script>

@@ -1,6 +1,12 @@
 <template>
   <div>
-    <gmap-map :center="center" :zoom="2.5" ref="mapRef" class="fullmap">
+    <gmap-map
+      :center="center"
+      :zoom="2.5"
+      ref="mapRef"
+      class="fullmap"
+      v-bind:style="{ height: height + 'vh' }"
+    >
       <gmap-marker
         v-for="(mark, index) in segmentedMarkers"
         :key="index"
@@ -34,6 +40,7 @@ export default {
       this.index++;
     }
   },
+
   watch: {
     done: async function() {
       let markers = this.samples.map(sample => {
@@ -42,12 +49,15 @@ export default {
 
       setInterval(this.addMaker, 2000, markers);
     }
+  },
+
+  props: {
+    height: Number
   }
 };
 </script>
 <style scoped>
 .fullmap {
-  height: 94vh;
   width: 100vw;
 }
 </style>
