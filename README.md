@@ -6,6 +6,12 @@
 npm install
 ```
 
+**Remember add a google maps api key in a .env file**
+
+```
+VUE_APP_MAPS_API_KEY=<API_KEY>
+```
+
 ### Compiles and hot-reloads for development
 
 ```
