@@ -11,12 +11,12 @@
         >CameraMatics</v-btn
       >
 
-      <v-tabs slider-color="accent" slider-size="3" optional grow>
+      <!-- <v-tabs slider-color="accent" slider-size="3" optional grow>
         <v-tab class="white--text title font-weight-light" to="/map">Map</v-tab>
         <v-tab class="white--text title font-weight-light" to="/table"
           >Table</v-tab
         >
-      </v-tabs>
+      </v-tabs> -->
     </v-toolbar>
   </div>
 </template>
