@@ -2,7 +2,7 @@
   <div>
     <gmap-map
       :center="center"
-      :zoom="2.5"
+      :zoom="1"
       ref="mapRef"
       class="fullmap"
       v-bind:style="{ height: height + 'vh' }"

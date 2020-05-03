@@ -31,7 +31,25 @@ const getAllSamples = function(binary) {
       final = true;
     }
   }
-  return samples;
+  let result = samples.map(sample => {
+    return {
+      begin: sample.begin,
+      UTCTIME: sample.UTCTIME,
+      TZO: sample.TZO,
+      DSTO: sample.DSTO,
+      GPSTIME: sample.GPSTIME,
+      GPSSTATUS: sample.GPSSTATUS,
+      LAT: sample.LAT % 90,
+      LATDIR: sample.LATDIR,
+      LNG: sample.LNG % 180,
+      LNGDIR: sample.LNGDIR,
+      GPSSPEED: sample.GPSSPEED,
+      GPSCOURSE: sample.GPSCOURSE,
+      DIPSTATE: sample.DIPSTATE,
+      ACCSTATE: sample.ACCSTATE
+    };
+  });
+  return result;
 };
 
 const getDecodedFile = function(err, binary) {
